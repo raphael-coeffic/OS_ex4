@@ -1,0 +1,142 @@
+        -:    0:Source:Graph.cpp
+        -:    1:#include "Graph.hpp"
+        -:    2:#include <iostream>
+        -:    3:#include <vector>
+        -:    4:#include <list>
+        -:    5:#include <stack>
+        -:    6:
+        -:    7:using namespace std;
+        -:    8:
+        -:    9:// Constructor to initialize the graph with a given number of vertices
+        2:   10:Graph::Graph(int vertices) {
+        2:   11:    numVertices = vertices;
+        2:   12:    adj.resize(vertices);  // Resize the adjacency list
+        2:   13:}
+        -:   14:
+        -:   15:// Function to add an edge (u -> v)
+        9:   16:void Graph::addEdge(int u, int v) {
+        9:   17:    adj[u].push_back(v);
+        9:   18:    adj[v].push_back(u);  // If the graph is undirected
+        9:   19:}
+        -:   20:
+        -:   21:// Function to remove an edge (u -> v)
+        3:   22:void Graph::removeEdge(int u, int v) {
+        3:   23:    adj[u].remove(v);
+        3:   24:    adj[v].remove(u);  // If the graph is undirected
+        3:   25:}
+        -:   26:
+        -:   27:// Depth First Search (DFS) function to check connectivity
+        7:   28:void Graph::DFS(int v, vector<bool> &visited) {
+        7:   29:    visited[v] = true;
+       25:   30:    for (int u : adj[v]) {
+       18:   31:        if (!visited[u]) {
+        5:   32:            DFS(u, visited);  // Recursive DFS call
+        -:   33:        }
+        -:   34:    }
+        7:   35:}
+        -:   36:
+        -:   37:// Function to check if an edge exists between vertices u and v
+       17:   38:bool Graph::hasEdge(int u, int v) {
+       25:   39:    for (int neighbor : adj[u]) {
+       16:   40:        if (neighbor == v) return true;  // Edge found
+        -:   41:    }
+        -:   42:    return false;  // No edge found
+        -:   43:}
+        -:   44:
+        -:   45:// Function to check if the graph is Eulerian
+        2:   46:bool Graph::isEulerian() {
+        -:   47:    // Check connectivity
+        2:   48:    vector<bool> visited(numVertices, false);
+        -:   49:
+        -:   50:    // Find a start vertex with edges
+        -:   51:    int startVertex = -1;
+       2*:   52:    for (int i = 0; i < numVertices; i++) {
+        2:   53:        if (!adj[i].empty()) {
+        -:   54:            startVertex = i;
+        -:   55:            break;
+        -:   56:        }
+        -:   57:    }
+        2:   58:    if (startVertex == -1) {
+    #####:   59:        cout << "No edges in the graph." << endl;
+        -:   60:        return false;  // Graph has no edges
+        -:   61:    }
+        -:   62:
+        -:   63:    // Run DFS to check connectivity from startVertex
+        2:   64:    DFS(startVertex, visited);
+        -:   65:
+        -:   66:    // If any vertex is not visited but has edges, the graph is not connected
+        9:   67:    for (int i = 0; i < numVertices; i++) {
+       7*:   68:        if (!visited[i] && !adj[i].empty()) {
+    #####:   69:            cout << "Graph is not connected." << endl;
+        -:   70:            return false;
+        -:   71:        }
+        -:   72:    }
+        -:   73:
+        -:   74:    // Check if all vertices have even degrees
+        5:   75:    for (int i = 0; i < numVertices; i++) {
+        4:   76:        if (adj[i].size() % 2 != 0) {
+        1:   77:            cout << "Found Odd Degree at Vertex " << i << endl;
+        -:   78:            return false;  // Odd degree vertex found
+        -:   79:        }
+        -:   80:    }
+        -:   81:
+        -:   82:    return true;  // Graph is Eulerian
+        -:   83:}
+        -:   84:
+        -:   85:// Function to print the Eulerian cycle
+        2:   86:void Graph::printEulerianCycle() {
+        2:   87:    if (!isEulerian()) {
+        1:   88:        cout << "Graph is not Eulerian\n";
+        1:   89:        return;
+        -:   90:    }
+        -:   91:
+        1:   92:    stack<int> curr_path;
+        -:   93:    vector<int> circuit;
+        -:   94:
+        -:   95:    // Use a stack to store the current path
+        1:   96:    int curr_v = 0;
+        -:   97:    curr_path.push(curr_v);
+        -:   98:
+        -:   99:    // While the current path is not empty
+        8:  100:    while (!curr_path.empty()) {
+        7:  101:        if (!adj[curr_v].empty()) {
+        -:  102:            curr_path.push(curr_v);
+        -:  103:
+        -:  104:            // Take the first available edge
+        3:  105:            int next_v = adj[curr_v].front();
+        -:  106:
+        -:  107:            // Remove the edge from the graph
+        3:  108:            removeEdge(curr_v, next_v);
+        -:  109:
+        3:  110:            curr_v = next_v;
+        -:  111:        } else {
+        -:  112:            // Add vertex to the Eulerian circuit
+        4:  113:            circuit.push_back(curr_v);
+        -:  114:
+        -:  115:            // Go back to the previous vertex
+        4:  116:            curr_v = curr_path.top();
+        -:  117:            curr_path.pop();
+        -:  118:        }
+        -:  119:    }
+        -:  120:
+        -:  121:    // Print the Eulerian circuit
+        1:  122:    cout << "Eulerian Circuit: ";
+        5:  123:    for (int i = circuit.size() - 1; i >= 0; i--) {
+        4:  124:        cout << circuit[i];
+        4:  125:        if (i > 0) {
+        3:  126:            cout << " -> ";
+        -:  127:        }
+        -:  128:    }
+        -:  129:    cout << endl;
+        -:  130:}
+        -:  131:
+        -:  132:// Function to print the graph's adjacency list
+        2:  133:void Graph::printGraph() const {
+        9:  134:    for (int i = 0; i < numVertices; ++i) {
+        7:  135:        cout << "Vertex " << i << ":";
+       25:  136:        for (int v : adj[i]) {
+       18:  137:            cout << " -> " << v;
+        -:  138:        }
+        -:  139:        cout << endl;
+        -:  140:    }
+        2:  141:}

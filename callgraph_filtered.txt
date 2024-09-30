@@ -1,0 +1,81 @@
+--------------------------------------------------------------------------------
+Profile data file 'my_callgrind.out-01' (creator: callgrind-3.18.1)
+--------------------------------------------------------------------------------
+I1 cache: 
+D1 cache: 
+LL cache: 
+Timerange: Basic block 0 - 384524
+Trigger: Program termination
+Profiled target:  ./my_program -e 6 -v 4 -s 1234 (PID 23285, part 1, thread 1)
+Events recorded:  Ir
+Events shown:     Ir
+Event sort order: Ir
+Thresholds:       99
+Include dirs:     
+User annotated:   
+Auto-annotation:  on
+
+--------------------------------------------------------------------------------
+Ir                 
+--------------------------------------------------------------------------------
+2,381,738 (100.0%)  PROGRAM TOTALS
+
+--------------------------------------------------------------------------------
+Ir                  file:function
+--------------------------------------------------------------------------------
+2,381,738 (100.0%)  ???:0x0000000000020290 [/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2]
+2,216,789 (93.07%)  ./elf/./elf/rtld.c:_dl_start [/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2]
+2,214,696 (92.99%)  ./elf/../elf/dl-sysdep.c:_dl_sysdep_start [/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2]
+2,160,686 (90.72%)  ./elf/./elf/rtld.c:dl_main [/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2]
+2,082,706 (87.44%)  ./elf/./elf/dl-reloc.c:_dl_relocate_object [/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2]
+1,959,448 (82.27%)  ./elf/../sysdeps/x86_64/dl-machine.h:_dl_relocate_object
+1,768,238 (74.24%)  ./elf/./elf/dl-lookup.c:_dl_lookup_symbol_x [/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2]
+  785,572 (32.98%)  ./elf/./elf/dl-lookup.c:do_lookup_x [/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2]
+  180,325 ( 7.57%)  ./elf/./elf/dl-lookup.c:check_match [/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2]
+  157,614 ( 6.62%)  ???:(below main) [/home/raph/os4/my_program]
+  157,602 ( 6.62%)  ./csu/../csu/libc-start.c:__libc_start_main@@GLIBC_2.34 [/usr/lib/x86_64-linux-gnu/libc.so.6]
+  108,838 ( 4.57%)  ./elf/./elf/do-rel.h:_dl_relocate_object
+  102,974 ( 4.32%)  ???:_GLOBAL__sub_I__ZN5GraphC2Ei [/home/raph/os4/my_program]
+  102,914 ( 4.32%)  ???:0x000000000010a390 [???]
+  102,910 ( 4.32%)  ???:std::ios_base::Init::Init() [/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30]
+   80,084 ( 3.36%)  ./elf/../sysdeps/x86_64/dl-trampoline.h:_dl_runtime_resolve_xsave [/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2]
+   79,340 ( 3.33%)  ???:0x00000000048f4780 [???]
+   78,588 ( 3.30%)  ???:std::locale::locale() [/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30]
+   78,214 ( 3.28%)  ???:0x00000000000c2320 [/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30]
+   77,233 ( 3.24%)  ???:0x00000000048f42c0 [???]
+   76,599 ( 3.22%)  ./elf/./elf/dl-runtime.c:_dl_fixup [/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2]
+   76,483 ( 3.21%)  ???:std::locale::_Impl::_Impl(unsigned long) [/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30]
+   75,120 ( 3.15%)  ./string/../sysdeps/x86_64/strcmp.S:strcmp [/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2]
+   53,363 ( 2.24%)  ./csu/../sysdeps/nptl/libc_start_call_main.h:(below main) [/usr/lib/x86_64-linux-gnu/libc.so.6]
+   46,115 ( 1.94%)  ./elf/./elf/dl-tunables.c:__GI___tunables_init [/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2]
+   43,333 ( 1.82%)  ???:main [/home/raph/os4/my_program]
+   40,578 ( 1.70%)  ./elf/./elf/dl-deps.c:_dl_map_object_deps [/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2]
+   39,684 ( 1.67%)  ???:0x0000000004002050 [???]
+   39,660 ( 1.67%)  ./elf/./elf/dl-error-skeleton.c:_dl_catch_exception [/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2]
+   38,739 ( 1.63%)  ./elf/./elf/dl-load.c:_dl_map_object [/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2]
+   36,254 ( 1.52%)  ./elf/./elf/dl-deps.c:openaux [/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2]
+   28,839 ( 1.21%)  ???:0x00000000048f3a60 [???]
+   28,113 ( 1.18%)  ???:std::ctype<wchar_t>::ctype(unsigned long) [/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30]
+   28,074 ( 1.18%)  ???:0x00000000048f4950 [???]
+   27,204 ( 1.14%)  ???:std::ctype<wchar_t>::_M_initialize_ctype() [/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30]
+   20,534 ( 0.86%)  ./elf/./elf/dl-error-skeleton.c:_dl_receive_error [/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2]
+
+--------------------------------------------------------------------------------
+The following files chosen for auto-annotation could not be found:
+--------------------------------------------------------------------------------
+  ./csu/../csu/libc-start.c
+  ./csu/../sysdeps/nptl/libc_start_call_main.h
+  ./elf/../elf/dl-sysdep.c
+  ./elf/../sysdeps/x86_64/dl-machine.h
+  ./elf/../sysdeps/x86_64/dl-trampoline.h
+  ./elf/./elf/dl-deps.c
+  ./elf/./elf/dl-error-skeleton.c
+  ./elf/./elf/dl-load.c
+  ./elf/./elf/dl-lookup.c
+  ./elf/./elf/dl-reloc.c
+  ./elf/./elf/dl-runtime.c
+  ./elf/./elf/dl-tunables.c
+  ./elf/./elf/do-rel.h
+  ./elf/./elf/rtld.c
+  ./string/../sysdeps/x86_64/strcmp.S
+

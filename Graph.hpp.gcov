@@ -1,0 +1,41 @@
+        -:    0:Source:Graph.hpp
+        -:    1:#ifndef GRAPH_HPP
+        -:    2:#define GRAPH_HPP
+        -:    3:
+        -:    4:#include <iostream>
+        -:    5:#include <vector>
+        -:    6:#include <list>
+        -:    7:#include <stack>
+        -:    8:
+        2:    9:class Graph {
+        -:   10:public:
+        -:   11:    // Constructor to initialize the graph with a given number of vertices
+        -:   12:    Graph(int vertices);
+        -:   13:
+        -:   14:    // Add an edge (u -> v)
+        -:   15:    void addEdge(int u, int v);
+        -:   16:
+        -:   17:    // Remove an edge (u -> v)
+        -:   18:    void removeEdge(int u, int v);
+        -:   19:
+        -:   20:    // Print the graph
+        -:   21:    void printGraph() const;
+        -:   22:
+        -:   23:    // Check if there is an edge between vertices u and v
+        -:   24:    bool hasEdge(int u, int v);
+        -:   25:
+        -:   26:    // Check if the graph is Eulerian
+        -:   27:    bool isEulerian();
+        -:   28:
+        -:   29:    // Print the Eulerian cycle
+        -:   30:    void printEulerianCycle();
+        -:   31:
+        -:   32:private:
+        -:   33:    int numVertices;               // Number of vertices in the graph
+        -:   34:    std::vector<std::list<int>> adj;  // Adjacency list for storing edges
+        -:   35:
+        -:   36:    // DFS traversal to check connectivity
+        -:   37:    void DFS(int v, std::vector<bool> &visited);
+        -:   38:};
+        -:   39:
+        -:   40:#endif // GRAPH_HPP
